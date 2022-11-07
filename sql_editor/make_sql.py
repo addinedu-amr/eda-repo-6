@@ -39,32 +39,87 @@ def make_table():
     table_name_list = []
 
     print("테이블을 제작합니다. \n ")
-    table_name = input("테이블 이름을 입력하세요. >>")
-    table_size = int(input("컬럼의 개수를 입력하세요. >>"))
-
-    for i in range(table_size):
-        print(str(i+1) + "번째 데이터를 생성합니다. \n")
-        table_type_list.append(input("변수타입을 입력하세요. >>"))
-        table_name_list.append(input("변수 이름을 입력하세요. >>"))
-        print("테이블 지정 완료 \n")
     
-    sql = "create table " + table_name + "\n" + \
+    print("csv파일을 참고하여 작성하시겠습니까? \n")
+    sel_csv = int(input("yes : 1번 , no: 2번 >> "))
+    if sel_csv == 2:
+        table_name = input("테이블 이름을 입력하세요. >>")
+        table_size = int(input("컬럼의 개수를 입력하세요. >>"))
+
+        for i in range(table_size):
+            print(str(i+1) + "번째 데이터를 생성합니다. \n")
+            table_type_list.append(input("변수타입을 입력하세요. >>"))
+            table_name_list.append(input("변수 이름을 입력하세요. >>"))
+            print("테이블 지정 완료 \n")
+    
+        sql = "create table " + table_name + "\n" + \
          "("
     
-    for i in range(table_size):
-       sql = sql +" " + table_name_list[i] + " " + table_type_list[i]
-       if(i != table_size-1):
-            sql = sql + "," + "\n"
+        for i in range(table_size):
+            sql = sql +" " + table_name_list[i] + " " + table_type_list[i]
+            if(i != table_size-1):
+                sql = sql + "," + "\n"
      
-    sql = sql + " );"
-    print("명령어를 확인하세요. \n"  + sql)
-    sel = int(input("다음의 명령어를 삽입하시겠습니까? 1을 입력하면 됩니다."))
-    if(sel == 1):
-        return sql
-    else:
-        return 0
+        sql = sql + " );"
+        print("명령어를 확인하세요. \n"  + sql)
+        sel = int(input("다음의 명령어를 삽입하시겠습니까? 1을 입력하면 됩니다."))
+        if(sel == 1):
+            return sql
+        else:
+            return 0
 
 
+
+
+
+    elif sel_csv == 1:
+        sel_file = int(input("엑셀은 1번 csv는 2번 \n"))
+        if(sel_file == 1):
+            try:
+                excel_file = input("excel파일 이름을 입력, \n주의! 같은 폴더에 있을 것 \n주의! .excel까지 입력할 것\n>>")
+                df = pd.DataFrame(pd.read_excel("./" + excel_file))
+            except:
+                print("인코딩 문제가 발생했습니다. EUC-KR로 적용합니다.")
+                file = "./" + excel_file
+                df = pd.DataFrame(pd.read_excel(file, encoding='EUC-KR'))
+
+        if(sel_file == 2):
+            try:
+                csv_file = input("csv파일 이름을 입력, \n주의! 같은 폴더에 있을 것 \n주의! .csv까지 입력할 것\n>>")
+                df = pd.DataFrame(pd.read_csv("./" + csv_file))
+            except:
+                print("인코딩 문제가 발생했습니다. EUC-KR로 적용합니다.")
+                file = "./" + csv_file
+                df = pd.DataFrame(pd.read_csv(file, encoding='EUC-KR'))
+
+
+
+
+        df_list = df.columns.values.tolist()
+        table_name = input("테이블 이름을 입력하세요. >>")
+        table_type_list = []
+
+        for i in range(len(df_list)):
+            print(str(len(df_list)) + "개의 데이터를 입력해야합니다. \n")
+            print(str(i+1) + "번째 데이터를 생성합니다. \n")
+            table_type_list.append(input(df_list[i] + "의 변수타입을 입력하세요. >>"))
+            print("테이블 지정 완료 \n")
+    
+        sql = "create table " + table_name + "\n" + \
+         "("
+    
+        for i in range(len(df_list)):
+            sql = sql +" " + df_list[i] + " " + table_type_list[i]
+            if(i != len(df_list)-1):
+                sql = sql + "," + "\n"
+     
+        sql = sql + " );"
+        print("명령어를 확인하세요. \n"  + sql)
+        sel = int(input("다음의 명령어를 삽입하시겠습니까? 1을 입력하면 됩니다."))
+        if(sel == 1):
+            return sql
+        else:
+            return 0
 
 
 
@@ -119,10 +174,27 @@ def insert_data(cursor, local):
                 print(resul_iterator)
             print("\n")
 
-            print("데이터 삽입 주의 사항! \n테이블의 컬럼수와 csv의 컬럼수가 일치해야합니다.\n")
-            csv_file = input("csv파일 이름을 입력, \n주의! 같은 폴더에 있을 것 \n주의! .csv까지 입력할 것\n>>")
-            df = pd.DataFrame(pd.read_csv("./" + csv_file))
+            print("데이터 삽입 주의 사항! \n테이블의 컬럼수와 csv, excel의 컬럼수가 일치해야합니다.\n")
             
+            sel_file = int(input("엑셀은 1번 csv는 2번 \n"))
+            if(sel_file == 1):
+                try:
+                    excel_file = input("excel파일 이름을 입력, \n주의! 같은 폴더에 있을 것 \n주의! .excel까지 입력할 것\n>>")
+                    df = pd.DataFrame(pd.read_excel("./" + excel_file))
+                except:
+                    print("인코딩 문제가 발생했습니다. EUC-KR로 적용합니다.")
+                    file = "./" + excel_file
+                    df = pd.DataFrame(pd.read_excel(file, encoding='EUC-KR'))
+
+            if(sel_file == 2):
+                try:
+                    csv_file = input("csv파일 이름을 입력, \n주의! 같은 폴더에 있을 것 \n주의! .csv까지 입력할 것\n>>")
+                    df = pd.DataFrame(pd.read_csv("./" + csv_file))
+                except:
+                    print("인코딩 문제가 발생했습니다. EUC-KR로 적용합니다.")
+                    file = "./" + csv_file
+                    df = pd.DataFrame(pd.read_csv(file, encoding='EUC-KR'))
+
             x_count = df.shape[1]
             sql = "insert into " + table_name + " values ("
             for i in range(x_count):
@@ -160,11 +232,15 @@ while(True):
 
     if int(sel) == 1:
         sql = make_table()
-        if(sql != 0):
-            cursor.execute(sql)
-            print("테이블 제작 성공\n\n")
-        else:
-            print("테이블 제작 $실패$ \n\n")
+        try:
+            if(sql != 0):
+                cursor.execute(sql)
+                print("테이블 제작 성공\n\n")
+            else:
+                print("테이블 제작 $실패$ \n\n")
+
+        except:
+            print("테이블 제작 실패 \n\n")
 
     if int(sel) == 2:
         insert_data(cursor, local)
