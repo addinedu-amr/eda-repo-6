@@ -11,7 +11,7 @@ def access():
 
         try:
             local = mysql.connector.connect(
-            host = "trafficproject.cplcojjp1fut.ap-northeast-1.rds.amazonaws.com",
+            host = "localhost",
             port = 3306,
             user = user_name,
             password = password,
@@ -100,27 +100,70 @@ def make_table():
             table_name = input("테이블 이름을 입력하세요. >>")
             table_type_list = []
 
-            for i in range(len(df_list)):
-                print(str(len(df_list)) + "개의 데이터를 입력해야합니다. \n")
-                print(str(i+1) + "번째 데이터를 생성합니다. \n")
-                table_type_list.append(input(df_list[i] + "의 변수타입을 입력하세요. >>"))
-                print("테이블 지정 완료 \n")
+            auto_type = int(input("데이터 형태를 csv에 따라만들겠습니까? \n시간단축되나 날짜형을 지정할 수 없습니다. yes = 1 , no = 2 >>"))
+
+            if auto_type == 2:
+                for i in range(len(df_list)):
+                    print(str(len(df_list)) + "개의 데이터를 입력해야합니다. \n")
+                    print(str(i+1) + "번째 데이터를 생성합니다. \n")
+                    table_type_list.append(input(df_list[i] + "의 변수타입을 입력하세요. >>"))
+                    print("테이블 지정 완료 \n")
     
-            sql = "create table " + table_name + "\n" + \
-             "("
+                sql = "create table " + table_name + "\n" + \
+                "("
     
-            for i in range(len(df_list)):
-                sql = sql +" " + df_list[i] + " " + table_type_list[i]
-                if(i != len(df_list)-1):
-                    sql = sql + "," + "\n"
+                for i in range(len(df_list)):
+                    sql = sql +" " + df_list[i] + " " + table_type_list[i]
+                    if(i != len(df_list)-1):
+                        sql = sql + "," + "\n"
      
-            sql = sql + " );"
-            print("명령어를 확인하세요. \n"  + sql)
-            sel = int(input("다음의 명령어를 삽입하시겠습니까? 1을 입력하면 됩니다."))
-            if(sel == 1):
-                return sql
-            else:
-                return 1
+                sql = sql + " );"
+                print("명령어를 확인하세요. \n"  + sql)
+                sel = int(input("다음의 명령어를 삽입하시겠습니까? 1을 입력하면 됩니다."))
+                if(sel == 1):
+                    return sql
+                else:
+                    return 1
+
+
+
+            if auto_type == 1:
+                print("csv파일의 타입을 따라 만듭니다.")
+                df_type = pd.DataFrame(
+                        {'int' : ['1'],
+                         'float' : ['1.0'],
+                         'date' : ['2022-11-07'],
+                         'object' : ["string"]
+                       }) 
+                df_type = df_type.astype({'int':'int'})
+                df_type = df_type.astype({'float':'float'})
+        
+                for each in range(len(df_list)):
+                    for i in range(len(df_type)):
+                        if df[df_list[each]].dtype == df_type['int'].dtype:
+                            table_type_list.append("int")
+                        elif df[df_list[each]].dtype == df_type['float'].dtype:
+                            table_type_list.append("float")
+                        elif df[df_list[each]].dtype == df_type['object'].dtype:
+                            table_type_list.append("varchar(100)")
+    
+                sql = "create table " + table_name + "\n" + \
+                "("
+    
+                for i in range(len(df_list)):
+                    sql = sql +" " + df_list[i] + " " + table_type_list[i]
+                    if(i != len(df_list)-1):
+                        sql = sql + "," + "\n"
+     
+                sql = sql + " );"
+                print("명령어를 확인하세요. \n"  + sql)
+                sel = int(input("다음의 명령어를 삽입하시겠습니까? 1을 입력하면 됩니다."))
+                if(sel == 1):
+                    return sql
+                else:
+                    return 1
+
+
         except:
             print("파일을 읽는데 실패했습니다.")
 
