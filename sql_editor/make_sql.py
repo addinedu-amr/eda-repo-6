@@ -1,5 +1,6 @@
 import mysql.connector
 import pandas as pd
+import openpyxl
 
 
 
@@ -22,7 +23,7 @@ def access():
         except:
             print("데이터 베이스 읽기 오류입니다.")
 
-    print("데이터 베이스 접속을 환영합니다. \n 유저 : " 
+    print("\n데이터 베이스 접속을 환영합니다. \n 유저 : " 
         + user_name +
         "\n데이터베이스 : " + database )
         
@@ -40,7 +41,7 @@ def make_table():
 
     print("테이블을 제작합니다. \n ")
     
-    print("csv파일을 참고하여 작성하시겠습니까? \n")
+    print("excel, csv파일을 참고하여 작성하시겠습니까? \n")
     sel_csv = int(input("yes : 1번 , no: 2번 >> "))
     if sel_csv == 2:
         table_name = input("테이블 이름을 입력하세요. >>")
@@ -48,8 +49,8 @@ def make_table():
 
         for i in range(table_size):
             print(str(i+1) + "번째 데이터를 생성합니다. \n")
-            table_type_list.append(input("변수타입을 입력하세요. >>"))
-            table_name_list.append(input("변수 이름을 입력하세요. >>"))
+            table_type_list.append(input("컬럼 타입을 입력하세요. >>"))
+            table_name_list.append(input("컬럼 이름을 입력하세요. >>"))
             print("테이블 지정 완료 \n")
     
         sql = "create table " + table_name + "\n" + \
@@ -74,10 +75,10 @@ def make_table():
 
     elif sel_csv == 1:
         try:
-            sel_file = int(input("엑셀은 1번 csv는 2번 \n"))
+            sel_file = int(input("excel은 1번 csv는 2번 \n"))
             if(sel_file == 1):
                 try:
-                    excel_file = input("excel파일 이름을 입력, \n주의! 같은 폴더에 있을 것 \n주의! .excel까지 입력할 것\n>>")
+                    excel_file = input("excel파일 이름을 입력, \n주의! 같은 폴더에 있을 것 \n주의! .xlsx까지 입력할 것\n>>")
                     df = pd.DataFrame(pd.read_excel("./" + excel_file))
                 except:
                     print("인코딩 문제가 발생했습니다. EUC-KR로 적용합니다.")
@@ -104,7 +105,7 @@ def make_table():
             table_name = input("테이블 이름을 입력하세요. >>")
             table_type_list = []
 
-            auto_type = int(input("데이터 형태를 csv에 따라만들겠습니까? \n시간단축되나 날짜형을 지정할 수 없습니다. yes = 1 , no = 2 >>"))
+            auto_type = int(input("데이터 형태를 excel, csv에 따라만들겠습니까? \n시간이 단축되나 날짜형을 지정할 수 없습니다. yes = 1 , no = 2 >>"))
 
             if auto_type == 2:
                 for i in range(len(df_list)):
@@ -204,8 +205,10 @@ def delete_table(cursor):
                 cursor.execute(sql)
                 print("삭제를 완료했습니다.\n\n")
             except:
-                print("테이블 이름 오류입니다.")
-                print("데이터는 소중합니다\n\n.")
+                print("테이블 이름 오류입니다. 메인메뉴로 이동합니다.")
+
+        else:
+            print("데이터는 소중합니다\n\n.")
 
 
 
@@ -225,10 +228,10 @@ def insert_data(cursor, local):
 
             print("데이터 삽입 주의 사항! \n테이블의 컬럼수와 csv, excel의 컬럼수가 일치해야합니다.\n")
             
-            sel_file = int(input("엑셀은 1번 csv는 2번 \n"))
+            sel_file = int(input("excel(xlsx)은 1번 csv는 2번 \n"))
             if(sel_file == 1):
                 try:
-                    excel_file = input("excel파일 이름을 입력, \n주의! 같은 폴더에 있을 것 \n주의! .excel까지 입력할 것\n>>")
+                    excel_file = input("excel파일 이름을 입력, \n주의! 같은 폴더에 있을 것 \n주의! .xlsx까지 입력할 것\n>>")
                     df = pd.DataFrame(pd.read_excel("./" + excel_file))
                 except:
                     print("인코딩 문제가 발생했습니다. EUC-KR로 적용합니다.")
@@ -310,6 +313,4 @@ while(True):
     if int(sel) == 5:
         break
 
-
-# 버그 리포트 컬럼에서 인덱스 뛰어쓰기 지워야함.
 
