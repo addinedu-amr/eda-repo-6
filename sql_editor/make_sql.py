@@ -56,7 +56,7 @@ def make_table():
          "("
     
         for i in range(table_size):
-            sql = sql +" " + table_name_list[i] + " " + table_type_list[i]
+            sql = sql +" `" + table_name_list[i] + "` " + table_type_list[i]
             if(i != table_size-1):
                 sql = sql + "," + "\n"
      
@@ -96,7 +96,11 @@ def make_table():
 
 
 
+            #df_list_tmp = df.columns.values.tolist()
             df_list = df.columns.values.tolist()
+            #for i in df_list:
+            #   temp = i.replace(" ", ""_)
+
             table_name = input("테이블 이름을 입력하세요. >>")
             table_type_list = []
 
@@ -113,7 +117,7 @@ def make_table():
                 "("
     
                 for i in range(len(df_list)):
-                    sql = sql +" " + df_list[i] + " " + table_type_list[i]
+                    sql = sql +" `" + df_list[i] + "` " + table_type_list[i]
                     if(i != len(df_list)-1):
                         sql = sql + "," + "\n"
      
@@ -151,7 +155,7 @@ def make_table():
                 "("
     
                 for i in range(len(df_list)):
-                    sql = sql +" " + df_list[i] + " " + table_type_list[i]
+                    sql = sql +" `" + df_list[i] + "` " + table_type_list[i]
                     if(i != len(df_list)-1):
                         sql = sql + "," + "\n"
      
@@ -307,4 +311,5 @@ while(True):
         break
 
 
+# 버그 리포트 컬럼에서 인덱스 뛰어쓰기 지워야함.
 
