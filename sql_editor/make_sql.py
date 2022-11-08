@@ -249,10 +249,17 @@ def insert_data(cursor, local):
             sql = sql + " );"
             print(sql)
 
+            count = 0
+            max = 1000
+            print(str(len(df)) + "개의 데이터를 삽입합니다.")
+
             for i, row in df.iterrows():
                 cursor.execute(sql, tuple(row))
-                print(tuple(row))
                 local.commit()
+                count = count +1
+                if count >= max:
+                    print(str(count) + " / " + str(len(df))  )
+                    max = max + 1000
                 
             print("데이터 삽입 종료!! \n\n")
 
