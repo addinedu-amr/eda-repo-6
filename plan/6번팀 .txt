@@ -1,0 +1,26 @@
+팀 번호 : 6번
+팀 명 : 이디야는 스타벅스를 따라했을까?
+팀 주제 : 서울시 교통 인프라 현황 및 개선방안
+팀 리더 : 권용민 
+팀원 : 강원희, 김두엽, 임준영
+
+데이터 출처
+1. 서울시 교통사고 분석 시스템 (도로교통공단)
+http://taas.koroad.or.kr/gis/mcm/mcl/initMap.do?menuId=GIS_GMP_STS_RSN#
+
+2. 서울특별시 주차정보안내시스템
+https://parking.seoul.go.kr/#
+서울특별시 주차장 확보율 통계
+https://data.seoul.go.kr/dataList/10357/S/2/datasetView.do
+
+3. 전세계 교통시스템 비교 사이트를 참고하여 데이터 추출 예정
+https://www.tomorrowsworldtoday.com/2022/05/16/best-public-transportation-systems-in-the-world/
+
+4. 한국전력공사_전기차 충전소 설치현황
+https://www.data.go.kr/data/15039290/fileData.do
+
+5. 서울특별시 교통정보 (속도, 대중교통, 교통량)
+https://topis.seoul.go.kr/refRoom/openRefRoom_8.do
+
+6. 서울시 지하철 혼잡도 통계
+https://data.seoul.go.kr/dataList/262/S/2/datasetView.do
