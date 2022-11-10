@@ -1,4 +1,5 @@
 # 서울시 교통 인프라 현황 및 개선방안
+# :warning:주의:warning : CSV, excel 파일은 최대한 데이터 전처리를 하고 5MB 
 ![image](https://user-images.githubusercontent.com/110883172/199870328-d8690d96-e3cc-482c-b0fc-475e55e5ad21.png)
 ----------------------------------
 #### 팀 : 이디야는 스타벅스를 따라했을까?
