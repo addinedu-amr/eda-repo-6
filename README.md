@@ -1,6 +1,6 @@
 # 서울시 교통 인프라 현황 및 개선방안
 # :warning:주의:warning : CSV, excel 파일은 최대한 데이터 전처리를 하고 5MB 이하로 만들어서 올립시다!
-# 각 팀원은 발표자료 ipynb파일에 진행상황을 기록합니다. 그러면 누군가 깔끔하게 수정을 해줄 것입니다.
+# :eyes: 각 팀원은 발표자료 ipynb파일에 진행상황을 기록합니다. 그러면 누군가 깔끔하게 수정을 해줄 것입니다.
 
 
 ![image](https://user-images.githubusercontent.com/110883172/199870328-d8690d96-e3cc-482c-b0fc-475e55e5ad21.png)
