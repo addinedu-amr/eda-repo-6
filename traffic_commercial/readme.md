@@ -22,6 +22,7 @@ https://data.seoul.go.kr/dataList/OA-12913/S/1/datasetView.do
 https://data.seoul.go.kr/dataList/OA-12252/S/1/datasetView.do
 
 
+- 도로별 평균속도 데이터에 위치정보를 삽입하려고함.
 
 
 
