@@ -9,6 +9,8 @@
 를 하나의 파일로 정리함
 
 
+# 도로별 평균속도 데이터에 위치정보를 삽입하려고함.
+
 # 사용 데이터
 - 서울 지하철역 좌표
 https://observablehq.com/@taekie/seoul_subway_station_coordinate
@@ -22,7 +24,7 @@ https://data.seoul.go.kr/dataList/OA-12913/S/1/datasetView.do
 https://data.seoul.go.kr/dataList/OA-12252/S/1/datasetView.do
 
 
-- 도로별 평균속도 데이터에 위치정보를 삽입하려고함.
+
 
 
 
