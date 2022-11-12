@@ -199,7 +199,7 @@
 <br /> 
 
 ## 3.2 사용할 데이터 및 출처 
-#### 1️⃣ 데이터 출처
+###  데이터 출처
 ##### 서울 지하철역 좌표
 - 지하철역의 위치 정보
 - https://observablehq.com/@taekie/seoul_subway_station_coordinate
@@ -240,17 +240,172 @@
 - 상권의 점포 개점 폐점 조회
 - https://data.seoul.go.kr/dataList/OA-15577/S/1/datasetView.do
 
-
+##### 2의 데이터
+- 서울시 주차장 현황
+<br /> 
 <br /> 
 <br /> 
 
 ## 3.3 데이터 전처리
-#### 1. 대중교통 자료들을 통해 지역별 대중교통 이용 통계를 만든다.
-###### 1️⃣ 버스
-![image.png](attachment:image.png)
+### 0. 들어가기전
+#### 방대한 데이터를 다루기 때문에 상세한 코드 설명보다도 원본데이터를 어떻게 가공하였는지 설명하겠습니다.
+#### 그러니 어떻게 가공하였는지 궁금하면 언제든지 질문을 해주시면 코드를 소개해드리겠습니다.
 
 <br /> 
 <br /> 
+
+### 1. 대중교통 자료들을 통해 지역별 대중교통 이용 통계를 만든다.
+
+#### 1️⃣ 버스
+
+##### ㅇ 서울 버스노선별 정류장별 시간대별 승하차 인원정보 (2019~2022).
+![화면 캡처 2022-11-13 020501](https://user-images.githubusercontent.com/110883172/201485825-ee17e703-dbff-4d8a-b1fc-c43525e8d37a.png)
+
+<br /> 
+
+- 방대한 데이터 양으로 인해 앞으로 모든 데이터는 2022년 10월, 2021년 10월, 2020년 10월, 2019년 10월을 기준으로 합니다.
+- 또한 컬럼이 너무 방대하기 때문에 특정 시간으로 데이터를 압축시키기로 결정하였습니다.
+<br /> 
+<br /> 
+
+![화면 캡처 2022-11-13 021252](https://user-images.githubusercontent.com/110883172/201486165-ccc9733b-e6a4-490d-833a-049d9bf7565a.png)
+- 위의 사진처럼 출근시간, 퇴근시간, 늦게퇴근, 점심시간, 저녁시간, 모든시간의 총승차인원, 모든 시간의 총 하차인원으로 압축시켰습니다.
+- 위와 같은 파일을 2022년, 2021년, 2020년, 2019년에 반복합니다.
+
+- 위의 사진에서 보면 표준 버스정류장 ID가 있는 것을 볼 수 있습니다. 
+<br /> 
+<br /> 
+
+![화면 캡처 2022-11-13 022126](https://user-images.githubusercontent.com/110883172/201486589-87db47cc-bf1c-4f74-91b9-520cd1733fb1.png)
+- 표준버스정류장ID로 value_counts 하면 정류장별 환승가능한 버스의 수를 구할 수 있습니다. 
+- (이름으로 해볼까 했던 이야기)
+
+<br /> 
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201486651-9cfd42cd-29fb-42cb-9d86-adfac7ae6e19.png)
+- 원본파일의 역명과 merge를 통해 정류장별로 환승 가능한 버스의 수를 구합니다.
+- <strong>여기서 정류장별 환승가능한 버스 노선의 개수를 구할 수 있습니다.</strong>
+
+<br /> 
+<br />
+
+
+![image](https://user-images.githubusercontent.com/110883172/201486801-f55d34eb-0f72-4a8c-8c2f-7593c75bad5e.png)
+- 다시 원본파일을 보면
+- 정류장별 승하차 인원이 아니라 버스 노선별 승하차수이기 때문에 하나의 정류장으로 합쳐주어야 했습니다.
+
+<br /> 
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201486871-3786ea85-8fe4-4f74-928f-a03363a8f59a.png)
+- 그래서 표준버스정류장ID를 기준으로 피벗을 시켜 정류장별 승하차 인원을 구합니다.
+<br /> 
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201486908-74f94288-eda5-4fbc-9498-c4e92340848c.png)
+- 방금 구했던 정류장별 환승가능 버스노선 데이터와 병합합니다.
+<br /> 
+<br />
+
+##### ㅇ 서울 정류장별 위치데이터 (2019년 ~ 2022년)
+![image](https://user-images.githubusercontent.com/110883172/201487049-79ae7e38-1f01-40f8-b6a9-f681e7c20ede.png)
+- 위의 자료의 node_ID는 표준버스정류장ID와 일치했다.
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201487084-aa4a2b69-6a5a-45a1-9a72-6b5368fbe875.png)
+- 그 파일을 지금까지 만들던 데이터와 병합합니다.
+- 위치정보가 없는 정류장이 있기 때문에 약 2000개의 버스정류장 데이터가 소실되었습니다.
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201487153-d14d449e-e550-488f-bdc0-76195706dff8.png)
+- 이를 2019~2022년까지 반복합니다. 
+- <strong>2019~2022년의 10월의 버스정류장별 승하차인원과 위치정보 데이터를 얻습니다. </strong>
+
+<br /> 
+<br /> 
+
+#### 2️⃣ 지하철
+##### ㅇ 서울시 지하철역별 시간별 승하차 인원정보 (2019~2022).
+![image](https://user-images.githubusercontent.com/110883172/201487252-3b1070ba-ea11-442f-bddf-c467f38340ed.png)
+<br /> 
+
+- 서울시 지하철역별 시간별 승하차 인원정보를 전처리하는 것은 버스 데이터와 크게 다르지 않습니다. 
+- 컬럼을 버스의 기준과 같게 줄인다 -> 10월의 데이터만 사용한다.
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201487303-17d36775-3884-4e6f-bfe3-9fade15a82f3.png)
+- 위와 같이 컬럼을 추가하고 삭제하는 과정만 진행했습니다.
+
+
+##### ㅇ 서울시 지하철 위도경도 데이터
+![image](https://user-images.githubusercontent.com/110883172/201487342-37d51dfd-0eee-481b-bdc5-e0c852606cd3.png)
+<br /> 
+- 위도경도 데이터 파일을
+
+![image](https://user-images.githubusercontent.com/110883172/201487358-5772e32c-3b1f-4acf-aed5-954383e3e670.png)
+- 이전에 전처리했던 파일과 병합하고
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201487392-b0ba24d9-2169-4754-9635-862f641323fb.png)
+- 컬럼을 추가하고 삭제하여
+- <strong>2019~2022년의 10월의 지하철별 승하차인원과 위치정보 데이터를 얻습니다. </strong>
+
+<br /> 
+<br /> 
+
+#### 3️⃣ 승용차
+##### ㅇ 서울시 도로별 통행속도 데이터
+<br /> 
+![image](https://user-images.githubusercontent.com/110883172/201487555-a183b08f-f8a6-4c3a-a1ad-5aa4aa66550a.png)
+- 시작부터 위치정보를 뽑을 생각을 하고 있었습니다.
+
+<br /> 
+- 그래서 일자를 2022년 10월 1일만의 데이터로 분리하고
+
+<br /> 
+<br /> 
+![image](https://user-images.githubusercontent.com/110883172/201487654-64fb1cfb-ae11-47a2-b85b-b719ee3b79db.png)
+- 도로명, 시점명, 종점명만 열로 만들었습니다.
+- 이걸 리스트로 만들고 합치고 중복값을 제거하면 위치에 관한 데이터만 남게됩니다.
+
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201487746-f4759531-8c8b-4f4d-986d-7531e460c988.png)
+- 이렇게 위치정보에 대한 리스트를 구했다.
+- 이 리스트를 다시 데이터 프레임으로 만들어서 밑의 그림처럼 가공한다.
+
+
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201487925-b4d17473-0342-4cd7-ac7e-922c073fb331.png)
+- 최종적으로 이 값을 가지고 구글 API를 사용했다.
+
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201487958-445d681f-1184-4a39-a1e3-6e9b28207e94.png)
+- 일단 위치로 검색을 해서 위도경도를 뽑아내고
+- 거기서 실패하면 도로명을 붙여서 위도경도를 뽑아낸다.
+- 그런데 그림처럼 실패하는 값이 있었다.
+
+![image](https://user-images.githubusercontent.com/110883172/201488035-b9088ba0-faaa-4b3b-b496-d9d1be03a4ff.png)
+- 그 값들을 다시 모아서 해결 하기로 했다.
+
+![image](https://user-images.githubusercontent.com/110883172/201488108-5fc2a8ba-5b93-4740-ac27-471ec90b6801.png)
+- 하지만 구글API로 성공했던 파일이라 할지라도 이상한 값이 들어간 경우가 있었다.
+- 그 값들과 실패했던 값을하나로 합쳐서 
+
+
+<br /> 
+<br /> 
+
 
 ## 3.4 데이터 분석
 #### 전처리한 데이터를 분석하는 과정 및 시각화
