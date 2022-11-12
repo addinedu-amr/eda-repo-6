@@ -172,14 +172,74 @@
 
 <br /> 
 <br /> 
+<br /> 
+<br /> 
+<br /> 
+<br /> 
+
 
 ## 3.1 목표
-#### 이러이러한 목표를 달성하고 싶다
+####  1️⃣ 서울시 주요 상업지역의 교통인프라를 조사하자.
+
+##### 상업지역 주변의 대중교통 인프라 조사
+    - 대중교통 (버스, 지하철)
+    - 주변 도로의 평균 속도
+    - 주차 시설
+    
+<br /> 
+
+##### 2️⃣ 상권이 발달된 지역이지만 교통인프라가 부족한 지역은 어디인가?
+##### 3️⃣ 반대로 교통인프라는 충분하지만 상권이 발달하지 못한 지역은 어디인가?
+##### 4️⃣상권이 발달될 가능성이 보이는 지역은 어디인가?
+
+
+<br /> 
+<br /> 
 <br /> 
 <br /> 
 
-## 3.2 목표와 데이터 출처를 연결 
-#### 목표를 위해 어떤 데이터를 가져왔는지
+## 3.2 사용할 데이터 및 출처 
+#### 1️⃣ 데이터 출처
+##### 서울 지하철역 좌표
+- 지하철역의 위치 정보
+- https://observablehq.com/@taekie/seoul_subway_station_coordinate
+
+##### 서울 버스정류장 좌표
+- 버스정류장의 위치 정보
+- http://data.seoul.go.kr/dataList/OA-15067/S/1/datasetView.do
+
+##### 서울 버스노선별 정류장별 시간대별 승하차 인원정보 (2019~2022)
+- 버스정류장별 승하차 인원정보
+- https://data.seoul.go.kr/dataList/OA-12913/S/1/datasetView.do
+
+##### 서울시 역별(호선별) 시간대별 승하차 인원정보 (2019~2022)
+- 지하철역별 승하차 인원정보
+- https://data.seoul.go.kr/dataList/OA-12252/S/1/datasetView.do
+
+##### 서울시 평균속도 보고서
+- 서울시 도로의 평균속도 (접근성)
+- https://topis.seoul.go.kr/refRoom/openRefRoom_1.do
+
+##### 서울시 도로별 좌표
+- 도로의 시점 종점의 위치좌표 
+- 구굴지도 AP, 카카오지도 셀레니움 (https://xn--yq5bk9r.com/blog/map-coordinates)
+
+##### 서울시 상권 주변 아파트
+- 상권 주변 생활인구 추정
+- http://data.seoul.go.kr/dataList/OA-15566/S/1/datasetView.do;jsessionid=BD910DF269D08246CCDB63CD4217E67E.new_portal-svr-21
+
+##### 서울시 상권 추정매출
+- 서울시 상권의 규모 확인
+- https://data.seoul.go.kr/dataList/OA-15572/S/1/datasetView.do
+
+##### 서울시 상권영역
+- 상권의 위치 정보
+- https://data.seoul.go.kr/dataList/OA-15560/S/1/datasetView.do
+
+##### 서울시 상권영역
+- 상권의 점포 개점 폐점 조회
+- https://data.seoul.go.kr/dataList/OA-15577/S/1/datasetView.do
+
 
 <br /> 
 <br /> 
