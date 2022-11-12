@@ -360,15 +360,19 @@
 
 #### 3️⃣ 승용차
 ##### ㅇ 서울시 도로별 통행속도 데이터
+
 <br /> 
+
 ![image](https://user-images.githubusercontent.com/110883172/201487555-a183b08f-f8a6-4c3a-a1ad-5aa4aa66550a.png)
 - 시작부터 위치정보를 뽑을 생각을 하고 있었습니다.
 
 <br /> 
+
 - 그래서 일자를 2022년 10월 1일만의 데이터로 분리하고
 
 <br /> 
 <br /> 
+
 ![image](https://user-images.githubusercontent.com/110883172/201487654-64fb1cfb-ae11-47a2-b85b-b719ee3b79db.png)
 - 도로명, 시점명, 종점명만 열로 만들었습니다.
 - 이걸 리스트로 만들고 합치고 중복값을 제거하면 위치에 관한 데이터만 남게됩니다.
@@ -395,13 +399,101 @@
 - 거기서 실패하면 도로명을 붙여서 위도경도를 뽑아낸다.
 - 그런데 그림처럼 실패하는 값이 있었다.
 
+<br /> 
+<br /> 
+
 ![image](https://user-images.githubusercontent.com/110883172/201488035-b9088ba0-faaa-4b3b-b496-d9d1be03a4ff.png)
 - 그 값들을 다시 모아서 해결 하기로 했다.
 
+<br /> 
+<br /> 
+
 ![image](https://user-images.githubusercontent.com/110883172/201488108-5fc2a8ba-5b93-4740-ac27-471ec90b6801.png)
 - 하지만 구글API로 성공했던 파일이라 할지라도 이상한 값이 들어간 경우가 있었다.
-- 그 값들과 실패했던 값을하나로 합쳐서 
+- 그 값들과 실패했던 값만 따로 추출하여 셀레니움을 돌리기로 했다.
 
+<br /> 
+<br /> 
+
+
+![image](https://user-images.githubusercontent.com/110883172/201491250-0f60b6f4-ed3b-4f69-88db-c178864385be.png)
+- 셀레니움은 카카오지도를 통해 진행하며 위치명에 "서울"을 추가해서 검색을 하게 만들었다.
+
+<br /> 
+<br /> 
+
+![카카오맵_-_Chrome_2022-11-13_03-30-20_AdobeExpress](https://user-images.githubusercontent.com/110883172/201491266-e899b3e9-aa5a-49bc-8223-f85bfe0b6ac8.gif)
+- 이런식으로..
+
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201491288-ee2831da-a998-4d08-80c0-35729068aae0.png)
+- 그러면 카카오 지도를 통해서 URL을 받아오게 된다. 이걸
+
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201491337-a87b89c8-ce00-4f13-b8db-4806cde5b305.png)
+- URL을 입력하면 위도 경도로 바꿔주는 사이트로 접속하여 셀레니움을 진행한다.
+
+<br /> 
+<br /> 
+
+![지도_위도_경도_-_Chrome_2022-11-13_03-44-06_AdobeExpress](https://user-images.githubusercontent.com/110883172/201491369-9927c1fb-a6a4-419c-ac17-85eabb621d6b.gif)
+- 이런식으로 
+
+<br /> 
+<br /> 
+
+
+![image](https://user-images.githubusercontent.com/110883172/201491433-38fba39d-bd2a-4632-b055-b02bf398d405.png)
+- <strong>그러면 도로에대한 위도 경도 값을 모두 받아왔다.</strong>
+
+<br /> 
+<br /> 
+
+
+##### ㅇ 서울시 도로별 통행속도 데이터
+
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201491471-99fbcafd-1600-4c5e-90b1-59747216337f.png)
+- 다시 서울시 도로별 통행속도 데이터
+- 위 자료를 버스에서 설명한 것처럼 가공하는데, 한가지 재미난점을 설명하면
+
+<br /> 
+<br /> 
+
+
+![image](https://user-images.githubusercontent.com/110883172/201491520-e16a8094-3794-40b0-8b04-c2f43e70fd91.png)
+- 위의 파일에서 일자별 통행속도이기 때문에 도로별 한달의 평균속도를 구해야했다.
+- 그래서 문자열 컬럼을 정보라는 하나의 컬럼으로 만들고 정보를 기준으로 (평균)피벗을 하면 위처럼 나온다.
+- 그리고 다시 정보를 분리하고 가공하면
+
+<br /> 
+<br /> 
+
+
+![image](https://user-images.githubusercontent.com/110883172/201491492-8caa6ffa-1900-4e75-8a99-73d4f9a2e603.png)
+- 이런식으로 만들어 데이터를 가공한다.
+
+<br /> 
+<br />
+
+
+
+![image](https://user-images.githubusercontent.com/110883172/201491635-8b7ad8bc-f121-4be6-a355-a50c60fca584.png)
+- 그래서 가공한 데이터에 위치정보를 시점과 종점별로 넣으면
+- <strong>서울시 도로별 10월 한 달 평균 속도 및 도로 위치정보 데이터를 얻을 수 있다. </strong>
+
+
+
+#### 3️⃣ 상권데이터
+##### ㅇ 서울시 도로별 통행속도 데이터
+
+<br /> 
+<br /> 
 
 <br /> 
 <br /> 
