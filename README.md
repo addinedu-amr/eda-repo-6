@@ -356,6 +356,7 @@
 
 <br /> 
 <br /> 
+<br />
 
 #### 3️⃣ 승용차
 ##### ㅇ 서울시 도로별 통행속도 데이터
@@ -486,14 +487,110 @@
 - 그래서 가공한 데이터에 위치정보를 시점과 종점별로 넣으면
 - <strong>서울시 도로별 10월 한 달 평균 속도 및 도로 위치정보 데이터를 얻을 수 있다. </strong>
 
-
+<br />
+<br />
+<br />
 
 #### 3️⃣ 상권데이터
-##### ㅇ 서울시 도로별 통행속도 데이터
+##### ㅇ 서울시 우리마을 가게 상권영역 데이터
+
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201518617-bc244f08-9818-4cf3-ab88-93a0d63c3b34.png)
+- 필요없는 컬럼을 삭제한다
+- 엑스좌표, 와이좌표 값이 이상하다.
+- 서울공공데이터 홈페이지를 다시 들어가 확인하니 데이터의 좌표값은 EPSG:5181 좌표계이며 우리가 사용하는 위도 경도 좌표는 epsg:4626좌표이다.
+
+<br />
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201518766-ae724e03-d41b-4b49-852a-0c9e734db65c.png)
+
+<br />
+
+
+![image](https://user-images.githubusercontent.com/110883172/201518769-6e1bbbd9-b9f9-4cb2-8533-02ca52552717.png)
+- 그래서 위와 같은 방법으로 위도 경도로 변환 하여
+- <strong>서울시 서울시 상권별 위도 경도 데이터를 얻었다. </strong>
+
+
+<br />
+<br />
+
+##### ㅇ 서울시 상권 추정매출 (2019~2022)
+
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201518858-cf0c32c1-ca48-4acb-abc5-33684e5fa847.png)
+- 상권데이터는 3분기 데이터가 없기 때문에 2분기를 사용하기로 했다. 필요없는 컬럼을 지웠다. 
+
+<br />
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201518956-0e500933-5984-4172-9be6-6b8acaa0fba6.png)
+- 지금 파일의 이름이 위치정보 파일의 이름보다 자세하게 적혀있어서 이름으로 병합이 불가능한 상황
+- 그리고 상권의 매출규모가 필요하기 때문에 이름과 관련없는 고유의 값인 상권코드로 피벗을 시켰다. 
+- 이름이 사라지지만 나중에 위정정보와 병합을 하면서 만들자. 
+
+<br />
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201518976-58afb1a8-94cc-4f64-bd7a-a644e94c1a8d.png)
+- 컬럼의 위치를 조정하고
+- <strong>2019~2022년 2분기 서울시 상권별 메출데이터를 얻었다. </strong>
+
+<br />
+<br />
+
+##### ㅇ 서울시 우리마을 상권분석(점포) (2019~2022년)
+
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201519096-bdf1ad61-96ea-41dd-a602-8413ca5113dd.png)
+- 업종별로 구분되어 있는 파일. 위와 다르지 않다. 2분기만 뽑아서 상권코드로 피벗을 시킨다.
+
+<br />
+<br />
+
+![image](https://user-images.githubusercontent.com/110883172/201519141-a4fcaa79-d3ed-4946-a0b9-60cd39e642ba.png)
+- 앞과 같기 때문에 따로 설명은 안해도?
 
 <br /> 
 <br /> 
 
+![image](https://user-images.githubusercontent.com/110883172/201519147-52a275c7-5693-4f8c-9d1c-8d9a9161d17e.png)
+- <strong>2019~2022년 2 서울시 상권별 개점, 폐업 데이터를 얻었다. </strong>
+
+<br /> 
+<br /> 
+
+##### ㅇ 최종 상권 분석 데이터 (2019년 ~ 2022년 2분기)
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201519228-302c34bb-0ddd-4a54-8afc-ae31a70d6057.png)
+- 위치정보와 매출데이터를 병합하고
+
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201519239-c7676d08-1ef3-4ce0-bf2d-d831ea0366b9.png)
+- 그 데이터를 다시 개점폐업 데이터와 병합한다.
+
+<br /> 
+<br /> 
+
+![image](https://user-images.githubusercontent.com/110883172/201519269-ede222ec-02f4-49b8-9589-7ef8fb2edf31.png)
+- 컬럼의 위치를 조정하면
+- <strong>2019~2022년 2분기 서울시 상권데이터를 만들 수 있다. </strong>
+
+<br /> 
+<br /> 
+
+이 외에도 상권주변 아파트의 수를 나타내는 데이터를 포함시키려 하였으나, 활용성이 없어서 제외시켰다.
+
+
+<br /> 
+<br /> 
 <br /> 
 <br /> 
 
