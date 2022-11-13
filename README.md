@@ -227,10 +227,6 @@
 - 도로의 시점 종점의 위치좌표 
 - 구굴지도 AP, 카카오지도 셀레니움 (https://xn--yq5bk9r.com/blog/map-coordinates)
 
-##### 서울시 상권 주변 아파트
-- 상권 주변 생활인구 추정
-- http://data.seoul.go.kr/dataList/OA-15566/S/1/datasetView.do;jsessionid=BD910DF269D08246CCDB63CD4217E67E.new_portal-svr-21
-
 ##### 서울시 상권 추정매출
 - 서울시 상권의 규모 확인
 - https://data.seoul.go.kr/dataList/OA-15572/S/1/datasetView.do
