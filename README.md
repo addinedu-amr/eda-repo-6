@@ -604,6 +604,8 @@
 ## 3.4 데이터 분석
 #### 전처리한 데이터를 분석하는 과정 및 시각화
 
+![image](https://user-images.githubusercontent.com/110883172/201543901-8921c6d3-e5f5-4868-8137-4fab4c1f2ec3.png)
+
 <br /> 
 <br />
 
