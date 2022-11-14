@@ -4,7 +4,7 @@
 #### Analysis on Seoul Traffic Infrastructure and suggesting solution 
 ![image](https://user-images.githubusercontent.com/110883172/199870328-d8690d96-e3cc-482c-b0fc-475e55e5ad21.png)
 
-![image](https://user-images.githubusercontent.com/110883172/201493740-015b6b4a-70a8-46ad-bdc3-51bf2caca4a1.png)
+![image](https://user-images.githubusercontent.com/110883172/201734641-7adb6a6d-3852-4b5f-85f6-bdf9f5289a8f.png)
 
 
 ---------------------------------
