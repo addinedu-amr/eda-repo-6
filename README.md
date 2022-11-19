@@ -59,12 +59,18 @@
 <br />
 
 - 교통인프라의 정의 (서론)
+
+<br />
+
 ![image](https://user-images.githubusercontent.com/110883172/202854558-ae268d15-135d-4b0d-8284-cef006ee82a4.png)
 
 <br />
 <br />
 
 ## 어떤 것을 분석하실건가요?
+
+<br />
+
 ![image](https://user-images.githubusercontent.com/110883172/202854568-29186bc3-45f6-4f69-a2c9-1b74a0a35228.png)
 
 <br />
@@ -101,16 +107,25 @@
 <br />
 
 ### 1. 도로
+
+<br />
+
 ![image](https://user-images.githubusercontent.com/110883172/202854661-01c4af3e-7ef0-4484-90a2-eb65db6b63de.png)
 
 <br />
 
 ### 2. 주차장
+
+<br />
+
 ![image](https://user-images.githubusercontent.com/110883172/202854738-66ad3c87-cff8-40cf-aee6-106dbab767e9.png)
 
 <br />
 
 ### 3. 대중교통과 상권
+
+<br />
+
 ![image](https://user-images.githubusercontent.com/110883172/202854512-646ece94-5a0f-41a4-bf62-8400fa6bfe3f.png)
 
 
