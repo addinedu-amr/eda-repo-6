@@ -139,4 +139,4 @@
 
 - https://drive.google.com/file/d/1etmXHJNXOLA7eA1EVEnz0TjL6MriTad8/view?usp=share_link
 
-- 해당 링크에서 확인하실 수 있습니다.
+- 프로젝트를 성공적으로 마칠 수 있게 노력해주신 팀장님과 팀원님들께 감사드립니다.
