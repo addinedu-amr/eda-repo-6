@@ -137,6 +137,6 @@
 
 ### 발표자료의 경우 내용이 길고 용량이 높아 GIT에 올리지 못했습니다.
 
-### 발표자료 폴더에 있는 pdf를 확인해주시면 감사하겠습니다.
+- https://drive.google.com/file/d/1etmXHJNXOLA7eA1EVEnz0TjL6MriTad8/view?usp=share_link
 
-### 용량문제로 두 개의 pdf로 나누었습니다. 양해바랍니다.
+- 해당 링크에서 확인하실 수 있습니다.
